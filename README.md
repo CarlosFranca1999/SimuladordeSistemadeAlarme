@@ -1,4 +1,3 @@
-
 # Sistema de Alarme IoT — Detector de Movimento
 
 Projeto desenvolvido em Python utilizando **Flask** para simular um sistema de alarme com detector de movimento e interface web.

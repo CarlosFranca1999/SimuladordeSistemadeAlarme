@@ -1,0 +1,97 @@
+body{
+    font-family: Arial;
+    text-align:center;
+    background:#111;
+    color:white;
+}
+
+#sensor{
+    width:420px;
+    height:140px;
+    border:2px dashed white;
+    margin:20px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    border-radius:14px;
+}
+
+.panel{
+    display:flex;
+    justify-content:center;
+    gap:60px;
+    margin:20px;
+}
+
+.led{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    margin:auto;
+}
+
+.off{ background:#3b0f12; }
+
+.on{
+    background:red;
+    box-shadow:0 0 20px red;
+}
+
+.relay{
+    width:150px;
+    padding:15px;
+    border-radius:14px;
+    background:#1e1e1e;
+    border:2px solid #333;
+    transition:.3s;
+}
+
+.relay span{
+    display:block;
+    margin-top:8px;
+    font-weight:bold;
+}
+
+.relay-light{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    margin:auto;
+    background:#400;
+}
+
+.relay.on{
+    border-color:#ff3b3b;
+    box-shadow:0 0 20px rgba(255,0,0,.6);
+}
+
+.relay.on .relay-light{
+    background:red;
+    box-shadow:0 0 12px red;
+}
+
+button{
+    padding:10px 14px;
+    margin:5px;
+    border:0;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#log{
+    width:420px;
+    margin:auto;
+    text-align:left;
+    border:1px solid #444;
+    border-radius:12px;
+    padding:10px;
+    background:#00000040;
+}
+
+#log p{
+    font-size:12px;
+    border-bottom:1px dashed #555;
+    padding:6px 0;
+}

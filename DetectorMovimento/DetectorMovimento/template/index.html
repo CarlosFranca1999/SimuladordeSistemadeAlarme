@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Simulador PIR</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>Simulador de Detector de Alarme</h1>
+
+<div id="sensor">CLIQUE PARA SIMULAR MOVIMENTO</div>
+
+<div class="panel">
+
+  <div>
+    <p>LED Alarme</p>
+    <div id="ledAlarm" class="led off"></div>
+  </div>
+
+  <div>
+    <p>Relé</p>
+    <div id="relay" class="relay off">
+        <div class="relay-light"></div>
+        <span>DESLIGADO</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="buttons">
+  <button id="arm">ARMAR</button>
+  <button id="disarm">DESARMAR</button>
+</div>
+
+<p><b>Último movimento:</b> <span id="last">-</span></p>
+
+<h3>Log</h3>
+<div id="log"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function log(msg){
+  const p=document.createElement("p");
+  p.textContent=msg;
+  $("log").prepend(p);
+}
+
+function render(d){
+  $("ledAlarm").className="led "+(d.alarm?"on":"off");
+
+  const relay=$("relay");
+  relay.className="relay "+(d.alarm?"on":"off");
+  relay.querySelector("span").textContent=d.alarm?"LIGADO":"DESLIGADO";
+
+  $("last").textContent=d.last;
+}
+
+async function post(url){
+  const r=await fetch(url,{method:"POST"});
+  const d=await r.json();
+
+  render(d);
+  if(d.msg) log(d.msg);
+  if(d.popup) alert(d.msg);
+}
+
+$("sensor").onclick=()=>post("/motion");
+$("arm").onclick=()=>post("/arm");
+$("disarm").onclick=()=>post("/disarm");
+
+fetch("/state").then(r=>r.json()).then(render);
+</script>
+
+</body>
+</html>

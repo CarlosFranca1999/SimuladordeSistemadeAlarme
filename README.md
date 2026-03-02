@@ -1,4 +1,3 @@
-# SimuladordeSistemadeAlarme
 
 # Sistema de Alarme IoT — Detector de Movimento
 
